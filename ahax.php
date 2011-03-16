@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: AHAX
- * Description: Adds simple hook allowing attachment of filters for ajax requests.
+ * Description: A plugin that provides easier access to AJAX functionality within plugins and themes.
  * Version: 1.0
  * Author: Daniel Doezema
  * Author URI: http://dan.doezema.com
@@ -36,22 +36,22 @@
  */
 
 
-// Include & Instantiate ahax Plugin Class
-if (!class_exists("ahax")) {
+// Include & Instantiate AHAX Plugin Class
+if (!class_exists("AHAX")) {
     require_once('class.ahax.php');
-    $ahax = new Ahax();
+    $AHAX = new AHAX();
 } else {
     // Naming Conflict
 }
 
 // Installation upon plugin activation
-register_activation_hook(__FILE__, array('ahax', 'install'));
+// register_activation_hook(__FILE__, array('ahax', 'install'));
 
 // Uninstallation upon plugin deactivation
-register_deactivation_hook(__FILE__, array('ahax', 'uninstall'));
+// register_deactivation_hook(__FILE__, array('ahax', 'uninstall'));
 
 // Bootstrap
-if($ahax instanceof Ahax) {
+if($AHAX instanceof AHAX) {
     require_once('actions.php');
 }
 ?>
