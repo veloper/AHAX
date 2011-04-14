@@ -25,6 +25,13 @@ class AHAX {
         return self::PREFIX . $action;
     } 
 
+	/**
+	 * A cleaner way to add a WordPress filter for an AHAX action.
+	 */
+	public static function action($action, $fnc) {
+		add_filter( self::tag( $action ), $fnc );
+	}
+		
     /**
      * Handle the AJAX request.
      */
