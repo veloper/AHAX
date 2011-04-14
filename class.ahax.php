@@ -28,7 +28,7 @@ class AHAX {
 	/**
 	 * A cleaner way to add a WordPress filter for an AHAX action.
 	 */
-	public static function action($action, $fnc) {
+	public static function bind($action, $fnc) {
 		add_filter( self::tag( $action ), $fnc );
 	}
 		
