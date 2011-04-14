@@ -5,10 +5,12 @@ AHAX = function (config) {
 	// Config Settings
 	this.supported_frameworks = ['jQuery'];
 	this.framework = 'jQuery';
-	this.url = '/wp-content/plugins/ahax/request.php';
+	this.url = null;
 	
 	// Constructor
 	this.init = function(config) {
+		this.setDefaultURL();
+		
 		// A string (url) may be passed instead of a config object.
 		if(typeof config == 'string') {
 			this.url = config;
@@ -27,6 +29,8 @@ AHAX = function (config) {
 			this.log('Invalid constructor argument.');
 		}			
 	};
+
+	
 
 	// Make a POST ajax request.
 	this.post = function(action, arguments, callback) {
@@ -50,6 +54,8 @@ AHAX = function (config) {
 	/**
 	 * Framework Wrapping Methods post_[framework](url, action, arguments, callback);
 	 */
+	
+	// jQuery
 	this.post_jQuery = function(url, action, arguments, callback) {
 		var args = (typeof arguments == 'object') ? arguments : {};
 		jQuery.extend(args, {action:action});
@@ -86,6 +92,13 @@ AHAX = function (config) {
 			console.log('AHAX Log: ' + string);
 		}
 	};
+	
+	// Attempt to set the default value of the url from the AHAXConfig object.
+	this.setDefaultURL = function() {
+		if(typeof AHAXConfig == 'object' && AHAXConfig.url) {
+			this.url = AHAXConfig.url;
+		}
+	}
 	
 	// Call the constuctor
 	this.init(config);	
